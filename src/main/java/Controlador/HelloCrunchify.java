@@ -1,8 +1,6 @@
 package Controlador;
  
 import BD.Obra_de_ArteDAO;
-import MOdelo.Artista;
-import MOdelo.Obra_de_Arte;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -25,23 +23,6 @@ public class HelloCrunchify extends HttpServlet {
         double valor =Integer.parseInt(request.getParameter("valor"));
         String artista = request.getParameter("user");
         
-        //Se debe incluir validaciones - Lo recuerda: Gestion de Excepciones.
-        Obra_de_ArteDAO dao = new Obra_de_ArteDAO();
-        Artista a=dao.buscar_artista(artista);
         
-        
-        if (a == null) {
-            request.setAttribute("Mensaje", "no se encontro el usuario ");
-        } else {
-           Obra_de_Arte obra = new Obra_de_Arte(nombre,des, estilo, valor, a);
-            boolean agrego = dao.agregar_Obra(obra);
-            if (agrego) {
-                request.setAttribute("Mensaje", "Se agrego correctamente ");
-            } else {
-                request.setAttribute("Mensaje", " error no se pudo agragar");
-            }
-        }
-        RequestDispatcher dispacher = request.getRequestDispatcher("agregarObra.jsp");
-        dispacher.forward(request, response);
         }
 }
