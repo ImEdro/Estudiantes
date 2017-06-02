@@ -35,7 +35,7 @@ public class Empleados {
         boolean r = false;
         try {
             // the mysql insert statement
-            query = " insert into Empleado (idEmpleado,nombre ,seccion ,CantEquiReparados,email,password,rol,disponible)"
+            query = " insert into Empleado (idempleado,nombre,disponible,seccion,cantequireparados,nombreusuario,contraseña,rol)"
                     + " values (?,?,?,?,?,?,?,?)";
             // create the mysql insert preparedstatement
             preparedStmt = connection.prepareStatement(query);
@@ -74,10 +74,10 @@ public class Empleados {
                 int id2 = rs.getInt("idEmpleado");
                 String nom = rs.getString("nombre");
                 int sec = rs.getInt("seccion");
-                int cant = rs.getInt("CantEquiReparados");
-                String nomu = rs.getString("email");
-                String cont = rs.getString("password");
+                int cant = rs.getInt("cantequireparados");
+                String nomu = rs.getString("nombreusuario");
                 String rol = rs.getString("rol");
+                String cont = rs.getString("contraseña");
                 boolean dispinible = rs.getBoolean("disponible");
                 a = new Empleado(id2, sec, cant, nom.toCharArray(), nomu, cont, rol.toCharArray(), dispinible);
             }
@@ -113,7 +113,7 @@ public class Empleados {
             try {
                 //Update
                 // create the java mysql update preparedstatement
-                query = "update Empleado set nombre=? ,seccion=? ,CantEquiReparados=?,email=?,password=?,rol=?,disponible=?  where idEmpleado = ?";
+                query = "update Empleado set nombre=? ,seccion=? ,cantequireparados=?,nombreusuario=?,contraseña=?,rol=?,disponible=?  where idEmpleado = ?";
                 preparedStmt = connection.prepareStatement(query);
                 preparedStmt.setString(1, String.copyValueOf(a.getNombre()));
                 preparedStmt.setInt(2, a.getSeccion());
