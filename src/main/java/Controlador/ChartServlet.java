@@ -60,7 +60,7 @@ public class ChartServlet extends HttpServlet {
         Equipos eq = new Equipos();
         Equipo e=eq.buscar(id);
         
-        dataset.addValue(e.getNumParte(), String.copyValueOf(e.getNombre()), "Category 1");  
+        dataset.addValue(2, String.copyValueOf(e.getNombre()), "1");  
 
 		
         JFreeChart chart = ChartFactory.createBarChart3D(
