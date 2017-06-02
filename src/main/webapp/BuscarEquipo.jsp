@@ -30,7 +30,7 @@
                 </tr>
                 <input type="hidden" name="tipo" value="1"/> 
             </table>
-              <a href="CharServlet"></a>
+            <img src="ChartServlet" /><br/>
             <%
             if (request.getAttribute("Mensaje") != null) {%>
             <h1><%=(String) request.getAttribute("Mensaje")%></h1> 
