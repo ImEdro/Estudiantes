@@ -35,18 +35,15 @@ public class Aeronaves {
     }
     
    public List<Aeronave> findAll() {
-        List<Aeronave> departamentos = null;
+        List<Aeronave> departamentos = new ArrayList<Aeronave>();
         String query = "SELECT * FROM Aeronave";
         
         try {
             Statement st = connection.createStatement();
             ResultSet rs = st.executeQuery(query);
             int id =0;
-            String n="aaaa";
+            String n="";
             while (rs.next()) {
-                if (departamentos == null) {
-                    departamentos = new ArrayList<Aeronave>();
-                }
                 id = rs.getInt("idAeronave");
                 n = rs.getNString("nombre");
                 Aeronave registro = new Aeronave(id, n.toCharArray());
