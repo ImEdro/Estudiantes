@@ -34,8 +34,8 @@ public class Aeronaves {
         this.connection = c.getConnection();
     }
 
-    public List<Aeronave> findAll() {
-        List<Aeronave> departamentos = new ArrayList<Aeronave>();
+    public ArrayList<Aeronave> findAll() {
+        ArrayList<Aeronave> departamentos = new ArrayList<Aeronave>();
         String query = "SELECT * FROM Aeronave";
         String n="aaaaaa";
         char[] s=n.toCharArray();
