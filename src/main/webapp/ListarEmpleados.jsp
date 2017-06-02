@@ -28,7 +28,7 @@
                 </tr>
                 <%
                     Empleados c = new Empleados();
-                    String query = "SELECT * FROM Empleado";
+                    String query = "SELECT * FROM empleado";
                     Connection connection = c.getConnection();
                     try {
                         // create the java statement
