@@ -36,7 +36,7 @@ public class Aeronaves {
     
    public List<Aeronave> findAll() {
         List<Aeronave> departamentos = null;
-        String query = "SELECT * FROM Colmena";
+        String query = "SELECT * FROM Aeronave";
         
         try {
             Statement st = connection.createStatement();
