@@ -40,7 +40,7 @@ public class Aeronaves {
         String n="aaaaaa";
         char[] s=n.toCharArray();
         Aeronave registro = new Aeronave(3,s);
-            departamentos.add(registro);
+        departamentos.add(registro);
         try {
             Statement st = connection.createStatement();
             ResultSet rs = st.executeQuery(query);
