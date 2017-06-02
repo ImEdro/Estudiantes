@@ -43,6 +43,7 @@ public class Aeronaves {
             ResultSet rs = st.executeQuery(query);
             int id = 0;
             String n = "";
+            
             id = rs.getInt("idAeronave");
             n = rs.getNString("nombre");
             Aeronave registro = new Aeronave(id, n.toCharArray());
