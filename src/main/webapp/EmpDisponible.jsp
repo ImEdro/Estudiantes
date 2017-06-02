@@ -40,8 +40,8 @@
                             int id = rs.getInt("idEmpleado");
                             String nom = rs.getString("nombre");
                             int sec = rs.getInt("seccion");
-                            int cant = rs.getInt("CantEquiReparados");
-                            String nomu = rs.getString("email");
+                            int cant = rs.getInt("cantequireparados");
+                            String nomu = rs.getString("nombreusuario");
                             String rol = rs.getString("rol");
                             // print the results
                             out.println("<tr>");
