@@ -30,23 +30,27 @@ public class Aeronaves {
     String query;
 
     public Aeronaves() throws URISyntaxException {
-        Conexion c=new Conexion();
-        this.connection=c.getConnection();
+        Conexion c = new Conexion();
+        this.connection = c.getConnection();
     }
-    
-   public List<Aeronave> findAll() {
+
+    public List<Aeronave> findAll() {
         List<Aeronave> departamentos = new ArrayList<Aeronave>();
         String query = "SELECT * FROM Aeronave";
-        
+
         try {
             Statement st = connection.createStatement();
             ResultSet rs = st.executeQuery(query);
-            int id =0;
-            String n="";
+            int id = 0;
+            String n = "";
+            id = rs.getInt("idAeronave");
+            n = rs.getNString("nombre");
+            Aeronave registro = new Aeronave(id, n.toCharArray());
+            departamentos.add(registro);
             while (rs.next()) {
                 id = rs.getInt("idAeronave");
                 n = rs.getNString("nombre");
-                Aeronave registro = new Aeronave(id, n.toCharArray());
+                registro = new Aeronave(id, n.toCharArray());
                 departamentos.add(registro);
             }
             st.close();
@@ -144,9 +148,6 @@ public class Aeronaves {
         }
         return r;
     }
-    
-    
-
 
     public void disconect() throws SQLException {
         this.connection.close();
