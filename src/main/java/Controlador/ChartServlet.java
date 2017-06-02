@@ -5,10 +5,15 @@
  */
 package Controlador;
 
+import BD.Equipos;
+import Modelo.Equipo;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.net.URISyntaxException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -36,28 +41,32 @@ public class ChartServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         	response.setContentType("image/png");
 		OutputStream outputStream = response.getOutputStream();
-		JFreeChart chart = getChart();
+                int id = Integer.parseInt(request.getParameter("id"));
+		JFreeChart chart = null;
+            try {
+                chart = getChart(id);
+            } catch (URISyntaxException ex) {
+                Logger.getLogger(ChartServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
 		int width = 500;
 		int height = 350;
 		ChartUtilities.writeChartAsPNG(outputStream, chart, width, height);
 
 	}
 
-	public JFreeChart getChart() {
+	public JFreeChart getChart(int id) throws URISyntaxException {
 		
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-        dataset.addValue(25.0, "Series 1", "Category 1");   
-        dataset.addValue(34.0, "Series 1", "Category 2");   
-        dataset.addValue(19.0, "Series 2", "Category 1");   
-        dataset.addValue(29.0, "Series 2", "Category 2");   
-        dataset.addValue(41.0, "Series 3", "Category 1");   
-        dataset.addValue(33.0, "Series 3", "Category 2");   
+        Equipos eq = new Equipos();
+        Equipo e=eq.buscar(id);
+        
+        dataset.addValue(e.getNumParte(), String.copyValueOf(e.getNombre()), "Category 1");  
 
 		
         JFreeChart chart = ChartFactory.createBarChart3D(
-            "3D Bar Chart Demo",      // chart title
-            "Category",               // domain axis label
-            "Value",                  // range axis label
+            "equipo",      // chart title
+            "Nombre ",               // domain axis label
+            "id",                  // range axis label
             dataset,                  // data
             PlotOrientation.VERTICAL, // orientation
             true,                     // include legend

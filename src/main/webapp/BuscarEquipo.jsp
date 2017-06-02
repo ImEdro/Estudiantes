@@ -91,6 +91,8 @@
                     ex.printStackTrace();
                 }
             %>
+            
+             <a href="CharServlet"></a>
             </table>    
             <%
            }

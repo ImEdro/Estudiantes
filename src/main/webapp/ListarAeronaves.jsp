@@ -46,8 +46,9 @@
                         e.printStackTrace();
                     }
                 %>
-                <h1>Descargar Excel <a href="HSSFCreateAeronave">Descargar</a></h1>
+               
             </table>
+            <h1>Descargar Excel <a href="HSSFCreateAeronave">Descargar</a></h1>
             <input type="button" id="button" onClick="window.location.href = 'index.jsp'" name="regresar" value="Regresar"> 
         </form>
     </body>
