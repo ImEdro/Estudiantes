@@ -45,10 +45,6 @@ public class Aeronaves {
             Statement st = connection.createStatement();
             ResultSet rs = st.executeQuery(query);
             int id = 1;
-            id = rs.getInt("idAeronave");
-            n = rs.getNString("nombre");
-            registro = new Aeronave(id, n.toCharArray());
-            departamentos.add(registro);
             while (rs.next()) {
                 id = rs.getInt("idAeronave");
                 n = rs.getNString("nombre");
