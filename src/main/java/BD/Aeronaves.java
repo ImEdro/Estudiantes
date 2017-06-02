@@ -36,15 +36,13 @@ public class Aeronaves {
     
    public List<Aeronave> findAll() {
         List<Aeronave> departamentos = null;
-        String query = "SELECT idAeronave,nombre FROM Aeronave";
+        String query = "SELECT * FROM Aeronave";
         
         try {
             Statement st = connection.createStatement();
             ResultSet rs = st.executeQuery(query);
             int id =0;
-            String n="";
-            boolean reina = false;
-
+            String n="aaaa";
             while (rs.next()) {
                 if (departamentos == null) {
                     departamentos = new ArrayList<Aeronave>();
