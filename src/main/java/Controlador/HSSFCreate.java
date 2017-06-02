@@ -35,7 +35,7 @@ public class HSSFCreate extends HttpServlet {
         response.setContentType("application/vnd.ms-excel");
         HSSFWorkbook wb = new HSSFWorkbook();
         HSSFSheet sheet = wb.createSheet("new sheet");
-
+        int tipo=Integer.parseInt(request.getParameter(""));
        
         Map<String, Object[]> data = new HashMap<String, Object[]>();
 		data.put("1", new Object[] {"Emp No.", "Name", "Salary"});

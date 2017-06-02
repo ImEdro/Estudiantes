@@ -64,6 +64,17 @@
         <servlet-name>Empleados2</servlet-name>
         <url-pattern>/Empleados2</url-pattern>
     </servlet-mapping>
+    
+     <servlet>
+        <servlet-name>HSSFCreateAeronave</servlet-name>
+        <servlet-class>Controlador.HSSFCreateAeronave</servlet-class>
+    </servlet>
+    
+     <servlet-mapping>
+        <servlet-name>HSSFCreateAeronave</servlet-name>
+        <url-pattern>/HSSFCreateAeronave</url-pattern>
+    </servlet-mapping>
+    
     <session-config>
         <session-timeout>
             30

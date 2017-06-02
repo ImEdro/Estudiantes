@@ -13,7 +13,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -28,6 +32,36 @@ public class Aeronaves {
     public Aeronaves() throws URISyntaxException {
         Conexion c=new Conexion();
         this.connection=c.getConnection();
+    }
+    
+   public List<Aeronave> findAll() {
+        List<Aeronave> departamentos = null;
+        String query = "SELECT * FROM Colmena";
+        
+        try {
+            Statement st = connection.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            int id =0;
+            String n="";
+            boolean reina = false;
+
+            while (rs.next()) {
+                if (departamentos == null) {
+                    departamentos = new ArrayList<Aeronave>();
+                }
+                id = rs.getInt("idAeronave");
+                n = rs.getNString("nombre");
+                Aeronave registro = new Aeronave(id, n.toCharArray());
+                departamentos.add(registro);
+            }
+            st.close();
+
+        } catch (SQLException e) {
+            System.out.println("Problemas al obtener la lista de Departamentos");
+            e.printStackTrace();
+        }
+
+        return departamentos;
     }
 
     public boolean agregar(Aeronave a) {
