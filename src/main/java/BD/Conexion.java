@@ -5,8 +5,9 @@ import java.sql.*;
 
 public class Conexion {
 	
-	private static Connection CONEXION=null;
-    	public static Connection getConnection() throws URISyntaxException{
+	private Connection CONEXION=null;
+        
+    	public Connection getConnection() throws URISyntaxException{
             URI dbUri = new URI(System.getenv("DATABASE_URL"));
             String username = dbUri.getUserInfo().split(":")[0];
             String password = dbUri.getUserInfo().split(":")[1];
@@ -25,7 +26,7 @@ public class Conexion {
 		   return CONEXION;
 	}
 	
-	public static void closeConnection(){
+	public void closeConnection(){
 		 try {
 			 if(CONEXION!=null){
 				 CONEXION.close();

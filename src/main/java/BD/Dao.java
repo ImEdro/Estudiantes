@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package BD;
+import java.net.URISyntaxException;
 import java.sql.*;
  
 public class Dao {
@@ -13,9 +14,9 @@ public class Dao {
     
     
     //Conectar a la Base de datos
-    public void conectar() throws SQLException,ClassNotFoundException{
-         Class.forName("com.mysql.jdbc.Driver");
-         conexion=DriverManager.getConnection("jdbc:mysql://localhost:3306/Proyecto_Corte_2",userDb, passDb);
+    public void conectar() throws URISyntaxException {
+        Conexion c=new Conexion();
+        this.conexion=c.getConnection();
     }
     //Desconectar a la Base de datos
     public void desconectar() throws SQLException, ClassNotFoundException{

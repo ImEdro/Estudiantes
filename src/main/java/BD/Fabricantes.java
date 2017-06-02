@@ -6,6 +6,7 @@
 package BD;
 
 import Modelo.Fabricante;
+import java.net.URISyntaxException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -24,8 +25,9 @@ public class Fabricantes {
     Connection connection;
     String query;
 
-    public Fabricantes() {
-         connection=(Connection) new Conexion();
+    public Fabricantes()throws URISyntaxException {
+        Conexion c=new Conexion();
+        this.connection=c.getConnection();
 
     }
 

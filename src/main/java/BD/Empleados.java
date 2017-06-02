@@ -7,6 +7,7 @@ package BD;
 
 import Modelo.Empleado;
 import static java.lang.System.out;
+import java.net.URISyntaxException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -25,9 +26,9 @@ public class Empleados {
     Connection connection;
     String query;
 
-    public Empleados() {
-          connection=(Connection) new Conexion();
-
+    public Empleados()throws URISyntaxException {
+        Conexion c=new Conexion();
+        this.connection=c.getConnection();
     }
 
     public boolean agregar(Empleado a) {

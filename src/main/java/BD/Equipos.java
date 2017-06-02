@@ -9,6 +9,7 @@ import Modelo.Aeronave;
 import Modelo.Equipo;
 import Modelo.Fabricante;
 import java.io.FileNotFoundException;
+import java.net.URISyntaxException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -27,8 +28,9 @@ public class Equipos {
     Connection connection;
     String query;
 
-    public Equipos() {
-          connection=(Connection) new Conexion();
+    public Equipos() throws URISyntaxException {
+        Conexion c=new Conexion();
+        this.connection=c.getConnection();
     }
 
     public boolean agregar(Equipo a) {
@@ -57,7 +59,7 @@ public class Equipos {
         return r;
     }
 
-    public Equipo buscar(int id) {
+    public Equipo buscar(int id) throws URISyntaxException {
         Equipo a = null;
         // if you only need a few columns, specify them by name instead of using "*"
         this.query = "select * from Equipo where numSerie = " + id;
@@ -105,7 +107,7 @@ public class Equipos {
         return r;
     }
 
-    public boolean actualizar(Equipo a) {
+    public boolean actualizar(Equipo a) throws URISyntaxException {
         boolean r = false;
         if (buscar(a.getNumSerie()) != null) {
             try {

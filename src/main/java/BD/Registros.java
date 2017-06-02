@@ -10,6 +10,7 @@ import Modelo.Empleado;
 import Modelo.Equipo;
 import Modelo.Registro;
 import static java.lang.System.out;
+import java.net.URISyntaxException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -25,8 +26,9 @@ public class Registros {
     Connection connection;
     String query;
 
-    public Registros() {
-          connection=(Connection) new Conexion();
+    public Registros() throws URISyntaxException {
+        Conexion c=new Conexion();
+        this.connection=c.getConnection();
     }
 
     public boolean agregar(Registro a) {
@@ -61,7 +63,7 @@ public class Registros {
         return r;
     }
 
-    public Registro buscar(int id) {
+    public Registro buscar(int id) throws URISyntaxException {
         Registro a = null;
         // if you only need a few columns, specify them by name instead of using "*"
         this.query = "select * from Registro where  = " + id;
@@ -112,7 +114,7 @@ public class Registros {
         return r;
     }
 
-    public boolean actualizar(Registro a) {
+    public boolean actualizar(Registro a) throws URISyntaxException {
         boolean r = false;
         if (buscar(a.getIdRegistro()) != null) {
             try {

@@ -6,6 +6,7 @@
 package BD;
 
 import Modelo.Aeronave;
+import java.net.URISyntaxException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -24,9 +25,9 @@ public class Aeronaves {
     Connection connection;
     String query;
 
-    public Aeronaves() {
-        connection=(Connection) new Conexion();
-
+    public Aeronaves() throws URISyntaxException {
+        Conexion c=new Conexion();
+        this.connection=c.getConnection();
     }
 
     public boolean agregar(Aeronave a) {
@@ -114,6 +115,9 @@ public class Aeronaves {
         }
         return r;
     }
+    
+    
+
 
     public void disconect() throws SQLException {
         this.connection.close();
