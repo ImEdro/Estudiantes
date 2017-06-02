@@ -17,8 +17,9 @@ public class Empleado {
     private String email;
     private String password;
     private char[] rol;
+    private boolean disponible;
 
-    public Empleado(int idEmpleado, int seccion, int CantEquiReparados, char[] Nombre, String email, String password, char[] rol) {
+    public Empleado(int idEmpleado, int seccion, int CantEquiReparados, char[] Nombre, String email, String password, char[] rol, boolean disponible) {
         this.idEmpleado = idEmpleado;
         this.seccion = seccion;
         this.CantEquiReparados = CantEquiReparados;
@@ -26,7 +27,18 @@ public class Empleado {
         this.email = email;
         this.password = password;
         this.rol = rol;
+        this.disponible = disponible;
     }
+
+    public boolean isDisponible() {
+        return disponible;
+    }
+
+    public void setDisponible(boolean disponible) {
+        this.disponible = disponible;
+    }
+    
+    
 
     public int getIdEmpleado() {
         return idEmpleado;

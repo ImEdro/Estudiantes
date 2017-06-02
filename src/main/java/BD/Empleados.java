@@ -26,17 +26,17 @@ public class Empleados {
     Connection connection;
     String query;
 
-    public Empleados()throws URISyntaxException {
-        Conexion c=new Conexion();
-        this.connection=c.getConnection();
+    public Empleados() throws URISyntaxException {
+        Conexion c = new Conexion();
+        this.connection = c.getConnection();
     }
 
     public boolean agregar(Empleado a) {
         boolean r = false;
         try {
             // the mysql insert statement
-            query = " insert into Empleado (idEmpleado,nombre ,seccion ,CantEquiReparados,email,password,rol)"
-                    + " values (?,?,?,?,?,?,?)";
+            query = " insert into Empleado (idEmpleado,nombre ,seccion ,CantEquiReparados,email,password,rol,disponible)"
+                    + " values (?,?,?,?,?,?,?,?)";
             // create the mysql insert preparedstatement
             preparedStmt = connection.prepareStatement(query);
 
@@ -47,6 +47,7 @@ public class Empleados {
             preparedStmt.setString(5, a.getEmail());
             preparedStmt.setString(6, a.getPassword());
             preparedStmt.setString(7, String.copyValueOf(a.getRol()));
+            preparedStmt.setBoolean(8, a.isDisponible());
             // execute the preparedstatement
             preparedStmt.execute();
             System.out.println("You made it, the insertion is ok!");
@@ -77,7 +78,8 @@ public class Empleados {
                 String nomu = rs.getString("email");
                 String cont = rs.getString("password");
                 String rol = rs.getString("rol");
-                a = new Empleado(id2, sec, cant, nom.toCharArray(), nomu, cont, rol.toCharArray());
+                boolean dispinible = rs.getBoolean("disponible");
+                a = new Empleado(id2, sec, cant, nom.toCharArray(), nomu, cont, rol.toCharArray(), dispinible);
             }
             st.close();
         } catch (SQLException e) {
@@ -104,13 +106,14 @@ public class Empleados {
 
         return r;
     }
+
     public boolean actualizar(Empleado a) {
         boolean r = false;
         if (buscar(a.getIdEmpleado()) != null) {
             try {
                 //Update
                 // create the java mysql update preparedstatement
-                query = "update Empleado set nombre=? ,seccion=? ,CantEquiReparados=?,email=?,password=?,rol=? where idEmpleado = ?";
+                query = "update Empleado set nombre=? ,seccion=? ,CantEquiReparados=?,email=?,password=?,rol=?,disponible=?  where idEmpleado = ?";
                 preparedStmt = connection.prepareStatement(query);
                 preparedStmt.setString(1, String.copyValueOf(a.getNombre()));
                 preparedStmt.setInt(2, a.getSeccion());
@@ -118,7 +121,8 @@ public class Empleados {
                 preparedStmt.setString(4, a.getEmail());
                 preparedStmt.setString(5, a.getPassword());
                 preparedStmt.setString(6, String.copyValueOf(a.getRol()));
-                preparedStmt.setInt(7, a.getIdEmpleado());
+                preparedStmt.setBoolean(7, a.isDisponible());
+                preparedStmt.setInt(8, a.getIdEmpleado());
                 // execute the java preparedstatement
                 preparedStmt.executeUpdate();
                 r = true;
