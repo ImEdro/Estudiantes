@@ -19,7 +19,7 @@
     </head>
     <body background="fondo.png">
         <form  action="Empleados1">
-            <h1>Buscar Aeronave</h1>
+            <h1>Buscar Empleado</h1>
             <table>
                 <tr>
                     <td>Id:     

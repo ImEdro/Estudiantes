@@ -23,6 +23,10 @@
                     <td><input type="number" name="seccion" size="3" placeholder="Ingrese la sección"/> </td>
                 </tr>
                 <tr>
+                    <td>Disponibilidad: </td>  
+                    <td><input type="text" name="disponible" size="20" placeholder="Ingrese la disponibilidad"/>  </td>
+                <tr>
+                <tr>
                     <td> num equipos reparados: </td>    
                     <td> <input type="number" name="cant" size="3" placeholder="Ingrese el N° de equipos reparados"/></td>
                 </tr>
