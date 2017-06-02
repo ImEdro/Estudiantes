@@ -10,6 +10,7 @@ import Modelo.Fabricante;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URISyntaxException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -25,7 +26,7 @@ public class Fabricantes1 extends HttpServlet {
    
     private Fabricantes f;
 
-    public Fabricantes1() throws FileNotFoundException {
+    public Fabricantes1() throws FileNotFoundException, URISyntaxException {
         f = new Fabricantes();
     }
 

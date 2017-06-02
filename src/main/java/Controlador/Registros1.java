@@ -16,8 +16,11 @@ import Modelo.Registro;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -41,134 +44,163 @@ public class Registros1 extends HttpServlet {
      */
     private Registros e;
 
-    public Registros1() throws FileNotFoundException {
+    public Registros1() throws FileNotFoundException, URISyntaxException {
         e = new Registros();
     }
 
-     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-            int tipo = Integer.parseInt(request.getParameter("tipo"));
-            if (tipo == 0) {
-                int dia=0,mes=0,ao=0;
-                dia = Integer.parseInt(request.getParameter("dia"));
-                mes = Integer.parseInt(request.getParameter("mes"));
-                ao = Integer.parseInt(request.getParameter("ao"));
-                Date d = new Date(ao, mes, dia);
-                request.setAttribute("fecha", "" + d.getYear() + "-" + d.getMonth() + "-" + d.getDate());
-                RequestDispatcher dispacher = request.getRequestDispatcher("BuscarRegistro2.jsp");
-                dispacher.forward(request, response);
-            } else if (tipo == 1) {
-                int id = Integer.parseInt(request.getParameter("id"));
-                Registro e1 = e.buscar(id);
-                if (e1 == null) {
-                    request.setAttribute("Mensaje", "No se encontro ");
-                    request.setAttribute("r", null);
-                } else {
-                    request.setAttribute("Mensaje", null);
-                    request.setAttribute("r", e1);
-                }
-                RequestDispatcher dispacher = request.getRequestDispatcher("BuscarRegistro.jsp");
-                dispacher.forward(request, response);
-            } else if (tipo == 2) {
-                int id = Integer.parseInt(request.getParameter("id"));
-                boolean p = this.e.eliminar(id);
-                if (p) {
-                    request.setAttribute("Mensaje", "Se a eliminado correctamente ");
-                } else {
-                    request.setAttribute("Mensaje", "no se encontro ");
-                }
-                RequestDispatcher dispacher = request.getRequestDispatcher("EliminarRegistro.jsp");
-                dispacher.forward(request, response);
-            } else if (tipo == 3) {
-                int id = Integer.parseInt(request.getParameter("id"));
-                int h = Integer.parseInt(request.getParameter("corr"));
-                if (request.getParameter("nombre").length() != 0 && h >= 1 && h <= 2) {
-                    char[] nombre = request.getParameter("nombre").trim().toCharArray();
-                    int diai = Integer.parseInt(request.getParameter("diai"));
-                    int mesi = Integer.parseInt(request.getParameter("mesi"));
-                    int aoi = Integer.parseInt(request.getParameter("aoi"));
-                    int diaf = Integer.parseInt(request.getParameter("diaf"));
-                    int mesf = Integer.parseInt(request.getParameter("mesf"));
-                    int aof = Integer.parseInt(request.getParameter("aof"));
-                    Date fechaIngreso = new Date(aoi, mesi, diai), fechaSalida = new Date(aof, mesf, diaf);
-                    int idequipo = Integer.parseInt(request.getParameter("equipo"));
-                    int idaero = Integer.parseInt(request.getParameter("aeronave"));
-                    int idempt = Integer.parseInt(request.getParameter("empt"));
-                    int idempr = Integer.parseInt(request.getParameter("empr"));
-                    Equipo equip = new Equipos().buscar(idequipo);
-                    Aeronave a = new Aeronaves().buscar(idaero);
-                    Empleado et = new Empleados().buscar(idempt);
-                    Empleado er = new Empleados().buscar(idempr);
-                    String t1 = "";
-
-                    if (h == 1) {
-                        t1 = "correctivo";
-                    } else if (h == 2) {
-                        t1 = "preventivo";
-                    }
-                    char[] t = t1.trim().toCharArray();
-                    if (equip != null && a != null && et != null && er != null) {
-                        Registro p = new Registro(id, fechaIngreso, fechaSalida, equip, nombre, a, et, er);
-                        boolean n = this.e.agregar(p);
-                        if (n) {
-                            request.setAttribute("Mensaje", "Se agrego correctamente ");
-                        } else {
-                            request.setAttribute("Mensaje", "id repetido intente nuevamente ");
-                        }
-                    } else {
-                        request.setAttribute("Mensaje", "error no existe alguna id ");
-                    }
-                } else {
-                    request.setAttribute("Mensaje", "casillas incompletas intente nuevamente ");
-                }
-                RequestDispatcher dispacher = request.getRequestDispatcher("NuevoRegistro.jsp");
-                dispacher.forward(request, response);
+        int tipo = Integer.parseInt(request.getParameter("tipo"));
+        if (tipo == 0) {
+            int dia = 0, mes = 0, ao = 0;
+            dia = Integer.parseInt(request.getParameter("dia"));
+            mes = Integer.parseInt(request.getParameter("mes"));
+            ao = Integer.parseInt(request.getParameter("ao"));
+            Date d = new Date(ao, mes, dia);
+            request.setAttribute("fecha", "" + d.getYear() + "-" + d.getMonth() + "-" + d.getDate());
+            RequestDispatcher dispacher = request.getRequestDispatcher("BuscarRegistro2.jsp");
+            dispacher.forward(request, response);
+        } else if (tipo == 1) {
+            int id = Integer.parseInt(request.getParameter("id"));
+            Registro e1 = null;
+            try {
+                e1 = e.buscar(id);
+            } catch (URISyntaxException ex) {
+                Logger.getLogger(Registros1.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            if (e1 == null) {
+                request.setAttribute("Mensaje", "No se encontro ");
+                request.setAttribute("r", null);
             } else {
-                int id = Integer.parseInt(request.getParameter("id"));
-                int h = Integer.parseInt(request.getParameter("corr"));
-                if (request.getParameter("nombre").length() != 0 && h >= 1 && h <= 2) {
-                    char[] nombre = request.getParameter("nombre").trim().toCharArray();
-                    int diai = Integer.parseInt(request.getParameter("diai"));
-                    int mesi = Integer.parseInt(request.getParameter("mesi"));
-                    int aoi = Integer.parseInt(request.getParameter("aoi"));
-                    int diaf = Integer.parseInt(request.getParameter("diaf"));
-                    int mesf = Integer.parseInt(request.getParameter("mesf"));
-                    int aof = Integer.parseInt(request.getParameter("aof"));
-                    Date fechaIngreso = new Date(aoi, mesi, diai), fechaSalida = new Date(aof, mesf, diaf);
-                    int idequipo = Integer.parseInt(request.getParameter("equipo"));
-                    int idaero = Integer.parseInt(request.getParameter("aeronave"));
-                    int idempt = Integer.parseInt(request.getParameter("empt"));
-                    int idempr = Integer.parseInt(request.getParameter("empr"));
-                    Equipo equip = new Equipos().buscar(idequipo);
-                    Aeronave a = new Aeronaves().buscar(idaero);
-                    Empleado et = new Empleados().buscar(idempt);
-                    Empleado er = new Empleados().buscar(idempr);
-                    String t1 = "";
+                request.setAttribute("Mensaje", null);
+                request.setAttribute("r", e1);
+            }
+            RequestDispatcher dispacher = request.getRequestDispatcher("BuscarRegistro.jsp");
+            dispacher.forward(request, response);
+        } else if (tipo == 2) {
+            int id = Integer.parseInt(request.getParameter("id"));
+            boolean p = this.e.eliminar(id);
+            if (p) {
+                request.setAttribute("Mensaje", "Se a eliminado correctamente ");
+            } else {
+                request.setAttribute("Mensaje", "no se encontro ");
+            }
+            RequestDispatcher dispacher = request.getRequestDispatcher("EliminarRegistro.jsp");
+            dispacher.forward(request, response);
+        } else if (tipo == 3) {
+            int id = Integer.parseInt(request.getParameter("id"));
+            int h = Integer.parseInt(request.getParameter("corr"));
+            if (request.getParameter("nombre").length() != 0 && h >= 1 && h <= 2) {
+                char[] nombre = request.getParameter("nombre").trim().toCharArray();
+                int diai = Integer.parseInt(request.getParameter("diai"));
+                int mesi = Integer.parseInt(request.getParameter("mesi"));
+                int aoi = Integer.parseInt(request.getParameter("aoi"));
+                int diaf = Integer.parseInt(request.getParameter("diaf"));
+                int mesf = Integer.parseInt(request.getParameter("mesf"));
+                int aof = Integer.parseInt(request.getParameter("aof"));
+                Date fechaIngreso = new Date(aoi, mesi, diai), fechaSalida = new Date(aof, mesf, diaf);
+                int idequipo = Integer.parseInt(request.getParameter("equipo"));
+                int idaero = Integer.parseInt(request.getParameter("aeronave"));
+                int idempt = Integer.parseInt(request.getParameter("empt"));
+                int idempr = Integer.parseInt(request.getParameter("empr"));
+                Equipo equip = null;
+                Aeronave a = null;
+                Empleado et = null;
+                Empleado er = null;
+                try {
+                    equip = new Equipos().buscar(idequipo);
+                    a = new Aeronaves().buscar(idaero);
+                    et = new Empleados().buscar(idempt);
+                    er = new Empleados().buscar(idempr);
+                } catch (URISyntaxException ex) {
+                    Logger.getLogger(Registros1.class.getName()).log(Level.SEVERE, null, ex);
+                }
 
-                    if (h == 1) {
-                        t1 = "correctivo";
-                    } else if (h == 2) {
-                        t1 = "preventivo";
+                String t1 = "";
+
+                if (h == 1) {
+                    t1 = "correctivo";
+                } else if (h == 2) {
+                    t1 = "preventivo";
+                }
+                char[] t = t1.trim().toCharArray();
+                if (equip != null && a != null && et != null && er != null) {
+                    Registro p = new Registro(id, fechaIngreso, fechaSalida, equip, nombre, a, et, er);
+                    boolean n = this.e.agregar(p);
+                    if (n) {
+                        request.setAttribute("Mensaje", "Se agrego correctamente ");
+                    } else {
+                        request.setAttribute("Mensaje", "id repetido intente nuevamente ");
                     }
-                    char[] t = t1.trim().toCharArray();
-                    if (equip != null && a != null && et != null && er != null) {
-                        Registro p = new Registro(id, fechaIngreso, fechaSalida, equip, nombre, a, et, er);
-                        boolean n = this.e.actualizar(p);
+                } else {
+                    request.setAttribute("Mensaje", "error no existe alguna id ");
+                }
+            } else {
+                request.setAttribute("Mensaje", "casillas incompletas intente nuevamente ");
+            }
+            RequestDispatcher dispacher = request.getRequestDispatcher("NuevoRegistro.jsp");
+            dispacher.forward(request, response);
+        } else {
+            int id = Integer.parseInt(request.getParameter("id"));
+            int h = Integer.parseInt(request.getParameter("corr"));
+            if (request.getParameter("nombre").length() != 0 && h >= 1 && h <= 2) {
+                char[] nombre = request.getParameter("nombre").trim().toCharArray();
+                int diai = Integer.parseInt(request.getParameter("diai"));
+                int mesi = Integer.parseInt(request.getParameter("mesi"));
+                int aoi = Integer.parseInt(request.getParameter("aoi"));
+                int diaf = Integer.parseInt(request.getParameter("diaf"));
+                int mesf = Integer.parseInt(request.getParameter("mesf"));
+                int aof = Integer.parseInt(request.getParameter("aof"));
+                Date fechaIngreso = new Date(aoi, mesi, diai), fechaSalida = new Date(aof, mesf, diaf);
+                int idequipo = Integer.parseInt(request.getParameter("equipo"));
+                int idaero = Integer.parseInt(request.getParameter("aeronave"));
+                int idempt = Integer.parseInt(request.getParameter("empt"));
+                int idempr = Integer.parseInt(request.getParameter("empr"));
+                Equipo equip = null;
+                Aeronave a = null;
+                Empleado et = null;
+                Empleado er = null;
+                try {
+                    equip = new Equipos().buscar(idequipo);
+                    a = new Aeronaves().buscar(idaero);
+                    et = new Empleados().buscar(idempt);
+                    er = new Empleados().buscar(idempr);
+                } catch (URISyntaxException ex) {
+                    Logger.getLogger(Registros1.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+                String t1 = "";
+
+                if (h == 1) {
+                    t1 = "correctivo";
+                } else if (h == 2) {
+                    t1 = "preventivo";
+                }
+                char[] t = t1.trim().toCharArray();
+                if (equip != null && a != null && et != null && er != null) {
+                    Registro p = new Registro(id, fechaIngreso, fechaSalida, equip, nombre, a, et, er);
+                    boolean n;
+                    try {
+                        n = this.e.actualizar(p);
                         if (n) {
                             request.setAttribute("Mensaje", "Se modifico correctamente ");
                         } else {
                             request.setAttribute("Mensaje", "no existe el registro con este id");
                         }
-                    } else {
-                        request.setAttribute("Mensaje", "error no existe alguna id ");
+                    } catch (URISyntaxException ex) {
+                        Logger.getLogger(Registros1.class.getName()).log(Level.SEVERE, null, ex);
                     }
+
                 } else {
-                    request.setAttribute("Mensaje", "casillas incompletas intente nuevamente ");
+                    request.setAttribute("Mensaje", "error no existe alguna id ");
                 }
-                RequestDispatcher dispacher = request.getRequestDispatcher("ActualizarRegistro.jsp");
-                dispacher.forward(request, response);
+            } else {
+                request.setAttribute("Mensaje", "casillas incompletas intente nuevamente ");
             }
-        
+            RequestDispatcher dispacher = request.getRequestDispatcher("ActualizarRegistro.jsp");
+            dispacher.forward(request, response);
+        }
+
     }
 
 }

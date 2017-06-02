@@ -11,6 +11,7 @@ import Modelo.Aeronave;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URISyntaxException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -28,7 +29,7 @@ public class Aeronaves1 extends HttpServlet {
 
     private Aeronaves c;
 
-    public Aeronaves1() throws FileNotFoundException {
+    public Aeronaves1() throws FileNotFoundException, URISyntaxException {
         c = new Aeronaves();
     }
 

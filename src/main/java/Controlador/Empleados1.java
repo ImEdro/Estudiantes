@@ -12,6 +12,7 @@ import Modelo.Validador;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URISyntaxException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.servlet.RequestDispatcher;
@@ -29,7 +30,7 @@ public class Empleados1 extends HttpServlet {
 
     private Empleados e;
 
-    public Empleados1() throws FileNotFoundException {
+    public Empleados1() throws FileNotFoundException, URISyntaxException {
         e = new Empleados();
     }
 
