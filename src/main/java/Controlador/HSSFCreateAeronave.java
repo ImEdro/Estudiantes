@@ -58,7 +58,7 @@ public class HSSFCreateAeronave extends HttpServlet {
         Map<String, Object[]> data = new HashMap<String, Object[]>();
         data.put("0", new Object[]{"id Aeronave", "Nombre"});
 
-        for (int i = 0; i < aeronaves.size(); i++) {
+        for (int i = 0; i < aeronaves.size()+1; i++) {
             String j = "" + (i + 1);
             data.put(j, new Object[]{aeronaves.get(i).getIdAeronave(), aeronaves.get(i).getNombre()});
         }
