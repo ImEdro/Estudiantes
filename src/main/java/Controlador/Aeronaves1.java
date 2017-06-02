@@ -6,7 +6,6 @@
 package Controlador;
 
 import BD.Aeronaves;
-import BD.Conecction;
 import BD.Empleados;
 import Modelo.Aeronave;
 import java.io.FileNotFoundException;
