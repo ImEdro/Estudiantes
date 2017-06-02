@@ -32,69 +32,69 @@ import org.apache.poi.ss.usermodel.Row;
  * @author
  */
 public class HSSFCreateAeronave extends HttpServlet {
+
     public void init(ServletConfig config) throws ServletException {
-        super.init(config);  
+        super.init(config);
     }
 
     public void destroy() {
     }
 
-    /** Processes requests for both HTTP GET and POST methods.
+    /**
+     * Processes requests for both HTTP GET and POST methods.
+     *
      * @param request servlet request
      * @param response servlet response
      */
-
     protected void processRequest(HttpServletRequest request,
-        HttpServletResponse response) throws ServletException, IOException, URISyntaxException {
+            HttpServletResponse response) throws ServletException, IOException, URISyntaxException {
 
         response.setContentType("application/vnd.ms-excel");
         HSSFWorkbook wb = new HSSFWorkbook();
         HSSFSheet sheet = wb.createSheet("new sheet");
-      
+
         Aeronaves a = new Aeronaves();
-        ArrayList<Aeronave> aeronaves=(ArrayList<Aeronave>) a.findAll();
+        ArrayList<Aeronave> aeronaves = (ArrayList<Aeronave>) a.findAll();
         Map<String, Object[]> data = new HashMap<String, Object[]>();
-        data.put("0", new Object[] {"id Aeronave", "Nombre"});
-        if(aeronaves!=null){
-        
-        for (int i = 0; i <aeronaves.size(); i++) {
-            String j = ""+i+1;
-            data.put(j, new Object[] {aeronaves.get(i).getIdAeronave(), aeronaves.get(i).getNombre()});
+        data.put("0", new Object[]{"id Aeronave", "Nombre"});
+
+        for (int i = 0; i < aeronaves.size(); i++) {
+            String j = "" + (i + 1);
+            data.put(j, new Object[]{aeronaves.get(i).getIdAeronave(), aeronaves.get(i).getNombre()});
         }
-        }else{
-             data.put("1", new Object[] {0,0});
-        }	
-		Set<String> keyset = data.keySet();
-		int rownum = 0;
-		for (String key : keyset) {
-			Row row = sheet.createRow(rownum++);
-			Object [] objArr = data.get(key);
-			int cellnum = 0;
-			for (Object obj : objArr) {
-				Cell cell = row.createCell(cellnum++);
-				if(obj instanceof Date) 
-					cell.setCellValue((Date)obj);
-				else if(obj instanceof Boolean)
-					cell.setCellValue((Boolean)obj);
-				else if(obj instanceof String)
-					cell.setCellValue((String)obj);
-				else if(obj instanceof Double)
-					cell.setCellValue((Double)obj);
-			}
-		}
+        Set<String> keyset = data.keySet();
+        int rownum = 0;
+        for (String key : keyset) {
+            Row row = sheet.createRow(rownum++);
+            Object[] objArr = data.get(key);
+            int cellnum = 0;
+            for (Object obj : objArr) {
+                Cell cell = row.createCell(cellnum++);
+                if (obj instanceof Date) {
+                    cell.setCellValue((Date) obj);
+                } else if (obj instanceof Boolean) {
+                    cell.setCellValue((Boolean) obj);
+                } else if (obj instanceof String) {
+                    cell.setCellValue((String) obj);
+                } else if (obj instanceof Double) {
+                    cell.setCellValue((Double) obj);
+                }
+            }
+        }
         // Write the output 
         OutputStream out = response.getOutputStream();
         wb.write(out);
         out.close();
     }
 
-    /** Handles the HTTP <code>GET</code> method.
+    /**
+     * Handles the HTTP <code>GET</code> method.
+     *
      * @param request servlet request
      * @param response servlet response
      */
-
     protected void doGet(HttpServletRequest request,
-        HttpServletResponse response) throws ServletException, IOException {
+            HttpServletResponse response) throws ServletException, IOException {
         try {
             processRequest(request, response);
         } catch (URISyntaxException ex) {
@@ -102,13 +102,14 @@ public class HSSFCreateAeronave extends HttpServlet {
         }
     }
 
-    /** Handles the HTTP POST method.
+    /**
+     * Handles the HTTP POST method.
+     *
      * @param request servlet request
      * @param response servlet response
      */
-
     protected void doPost(HttpServletRequest request,
-        HttpServletResponse response) throws ServletException, IOException {
+            HttpServletResponse response) throws ServletException, IOException {
         try {
             processRequest(request, response);
         } catch (URISyntaxException ex) {
@@ -116,10 +117,10 @@ public class HSSFCreateAeronave extends HttpServlet {
         }
     }
 
-    /** Returns a short description of the servlet.
+    /**
+     * Returns a short description of the servlet.
      */
-
     public String getServletInfo() {
-       return "Example to create a workbook in a servlet using HSSF";
+        return "Example to create a workbook in a servlet using HSSF";
     }
 }
