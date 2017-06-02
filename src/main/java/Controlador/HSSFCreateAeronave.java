@@ -55,11 +55,15 @@ public class HSSFCreateAeronave extends HttpServlet {
         ArrayList<Aeronave> aeronaves=(ArrayList<Aeronave>) a.findAll();
         Map<String, Object[]> data = new HashMap<String, Object[]>();
         data.put("0", new Object[] {"id Aeronave", "Nombre"});
+        if(aeronaves!=null){
+        
         for (int i = 0; i <aeronaves.size(); i++) {
-            String j = ""+i+1;
+            String j = ""+i;
             data.put(j, new Object[] {aeronaves.get(i).getIdAeronave(), aeronaves.get(i).getNombre()});
         }
-		
+        }else{
+             data.put("1", new Object[] {0,0});
+        }	
 		Set<String> keyset = data.keySet();
 		int rownum = 0;
 		for (String key : keyset) {
