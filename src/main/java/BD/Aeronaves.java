@@ -37,16 +37,17 @@ public class Aeronaves {
     public List<Aeronave> findAll() {
         List<Aeronave> departamentos = new ArrayList<Aeronave>();
         String query = "SELECT * FROM Aeronave";
-
+        String n="aaaaaa";
+        char[] s=n.toCharArray();
+        Aeronave registro = new Aeronave(3,s);
+            departamentos.add(registro);
         try {
             Statement st = connection.createStatement();
             ResultSet rs = st.executeQuery(query);
-            int id = 0;
-            String n = "";
-            
+            int id = 1;
             id = rs.getInt("idAeronave");
             n = rs.getNString("nombre");
-            Aeronave registro = new Aeronave(id, n.toCharArray());
+            registro = new Aeronave(id, n.toCharArray());
             departamentos.add(registro);
             while (rs.next()) {
                 id = rs.getInt("idAeronave");
