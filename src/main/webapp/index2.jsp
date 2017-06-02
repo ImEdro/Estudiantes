@@ -72,9 +72,6 @@
                 </li>
                 <li class="accion"><a href="#">Cuenta</a>
                     <div class="mostrar">
-                        <a href="#">Perfil</a>
-                        <a href="#">Cambiar datos personales</a>
-                        <a href="#">Cambiar Contraseña</a>
                         <a href="logout.jsp">Cerrar Sesión</a>
                     </div>
                 </li>
