@@ -8,7 +8,7 @@
         <title>Actualizar Registro</title>
     </head>
     <body background="fondo.png">
-        <form method= "POST" action="Registros1">
+        <form action="Registros1">
             <h1>Actualizar Registro</h1>
             <table>
                 <tr>

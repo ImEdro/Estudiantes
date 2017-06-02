@@ -12,7 +12,7 @@
         <title>Buscar Aeronave</title>
     </head>
     <body background="fondo.png">  
-        <form method= "POST" action="Aeronaves1">
+        <form action="Aeronaves1">
             <h1>Buscar Aeronave</h1>
             <table>
                 <tr>

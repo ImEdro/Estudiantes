@@ -10,7 +10,7 @@
     </head>
     <body background="fondo.png">
        
-        <form method= "POST" action="Aeronaves1">
+        <form action="Aeronaves1">
              <h1>Nueva Aeronave</h1>
             <table>
                 <tr>

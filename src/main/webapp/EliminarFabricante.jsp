@@ -8,7 +8,7 @@
         <title>Eliminar Fabricante</title>
     </head>
     <body background="fondo.png">
-        <form method= "POST" action="Fabricantes1">
+        <form  action="Fabricantes1">
             <h1>Eliminar Fabricante</h1>
             <h1>digite Id: </h1>
             <input type="number" name="id" max-leng="2" size="2" placeholder="Ingrese el Id">

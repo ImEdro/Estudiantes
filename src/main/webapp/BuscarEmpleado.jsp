@@ -18,7 +18,7 @@
         <title>Buscar Empleado</title>
     </head>
     <body background="fondo.png">
-        <form method= "POST" action="Empleados1">
+        <form  action="Empleados1">
             <h1>Buscar Aeronave</h1>
             <table>
                 <tr>

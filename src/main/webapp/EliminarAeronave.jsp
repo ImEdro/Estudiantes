@@ -8,7 +8,7 @@
         <title>Eliminar Aeronave</title>
     </head>
     <body background="fondo.png">
-        <form method= "POST" action="Aeronaves1">
+        <form action="Aeronaves1">
             <h1>Eliminar Aeronave</h1>
             <h1>digite Id: </h1>
             <input type="number" name="id" max-leng="2" size="2" placeholder="Ingrese el Id">

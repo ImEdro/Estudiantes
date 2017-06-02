@@ -8,7 +8,7 @@
         <title>Nuevo Equipo</title>
     </head>
     <body background="fondo.png">
-        <form method= "POST" action="Equipos1">
+        <form action="Equipos1">
             <h1>Nuevo Equipo</h1>
             <table>
                 <tr>

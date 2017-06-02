@@ -8,7 +8,7 @@
         <title>Eliminar Empleado</title>
     </head>
     <body background="fondo.png">
-        <form method= "POST" action="Empleados1">
+        <form  action="Empleados1">
             <h1>Eliminar Empleado</h1>
             <h1>digite Id: </h1>
             <input type="number" name="id" max-leng="2" size="2" placeholder="Ingrese el Id">

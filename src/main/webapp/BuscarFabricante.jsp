@@ -12,7 +12,7 @@
         <title>Buscar Fabbricante</title>
     </head>
     <body background="fondo.png">
-        <form method= "POST" action="Fabricantes1">
+        <form action="Fabricantes1">
             <h1>Buscar Fabricante</h1>
             <table>
                 <tr>

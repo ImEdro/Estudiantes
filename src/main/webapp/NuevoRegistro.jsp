@@ -8,7 +8,7 @@
         <title>Nuevo Registro</title>
     </head>
     <body background="fondo.png">
-        <form method= "POST" action="Registros1">
+        <form  action="Registros1">
             <h1>Nuevo Registro</h1>
             <table>
                 <tr>
@@ -25,7 +25,7 @@
                 </tr> 
                 <tr>
                     <td>año ingreso:</td>  
-                    <td><input type="number" name="añoi" size="3"placeholder="Ingrese año de ingreso"/></td> 
+                    <td><input type="number" name="añoi" size="3" placeholder="Ingrese año de ingreso"/></td> 
                 </tr> 
                 <tr>
                     <td>dia salida:</td>  

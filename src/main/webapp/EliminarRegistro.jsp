@@ -8,7 +8,7 @@
         <title>Eliminar Registro</title>
     </head>
     <body background="fondo.png">
-        <form method= "POST" action="Registros1">
+        <form  action="Registros1">
             <h1>Eliminar Registro</h1>
             <h1>digite Id: </h1>
             <input type="number" name="id" max-leng="2" size="2" placeholder="Ingrese el Id">

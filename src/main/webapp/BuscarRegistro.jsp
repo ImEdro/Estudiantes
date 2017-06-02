@@ -12,7 +12,7 @@
         <title>Buscar Registros</title>
     </head>
     <body background="fondo.png">
-        <form method= "POST" action="Registros1">
+        <form action="Registros1">
             <h1>Buscar Registro</h1>
             <table>
                 <tr>
