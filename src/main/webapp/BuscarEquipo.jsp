@@ -17,12 +17,12 @@
         <title>Buscar Equipo</title>
     </head>
     <body background="fondo.png">
-        <form method= "POST" action="Equipos1">
+        <form action="Equipos1">
             <h1>Buscar Equipo</h1>
             <table>
                 <tr>
                     <td>digite Nº de serie:</td>
-                    <td><input type="number" name="id"  size="2" placeholder="Ingrese el Nº de serie"></td>
+                    <td><input type="number" name="id" value="1" size="2" placeholder="Ingrese el Nº de serie"></td>
                 </tr>
                 <tr>
                     <td><input type="submit" id="submit" name="buscar" value="Buscar"/></td>
@@ -30,7 +30,7 @@
                 </tr>
                 <input type="hidden" name="tipo" value="1"/> 
             </table>
-             
+              <a href="CharServlet"></a>
             <%
             if (request.getAttribute("Mensaje") != null) {%>
             <h1><%=(String) request.getAttribute("Mensaje")%></h1> 
@@ -92,7 +92,7 @@
                 }
             %>
             
-             <a href="CharServlet"></a>
+            
             </table>    
             <%
            }
