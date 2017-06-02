@@ -6,6 +6,7 @@
 package Controlador;
 
 import BD.Equipos;
+import Modelo.Equipo;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.io.IOException;
@@ -40,10 +41,10 @@ public class ChartServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         	response.setContentType("image/png");
 		OutputStream outputStream = response.getOutputStream();
-                int id = Integer.parseInt(request.getParameter("id"));
 		JFreeChart chart = null;
+           
             try {
-                chart = getChart(id);
+                chart = getChart();
             } catch (URISyntaxException ex) {
                 Logger.getLogger(ChartServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -53,22 +54,17 @@ public class ChartServlet extends HttpServlet {
 
 	}
 
-	public JFreeChart getChart(int id) throws URISyntaxException {
+	public JFreeChart getChart() throws URISyntaxException {
 		
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
         Equipos eq = new Equipos();
-        
-        dataset.addValue(25.0, "Series 1", "Category 1");   
-        dataset.addValue(34.0, "Series 1", "Category 2");   
-        dataset.addValue(19.0, "Series 2", "Category 1");   
-        dataset.addValue(29.0, "Series 2", "Category 2");   
-        dataset.addValue(41.0, "Series 3", "Category 1");   
-        dataset.addValue(33.0, "Series 3", "Category 2");   
+        Equipo e = eq.buscar(1);
+        dataset.addValue(e.getNumSerie(), String.copyValueOf(e.getNombre()), " 1");   
 
 		
         JFreeChart chart = ChartFactory.createBarChart3D(
             "3D Bar Chart Demo",      // chart title
-            "Category",               // domain axis label
+            "equipo",               // domain axis label
             "Value",                  // range axis label
             dataset,                  // data
             PlotOrientation.VERTICAL, // orientation
