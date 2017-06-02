@@ -60,7 +60,7 @@ public class HSSFCreateAeronave extends HttpServlet {
         data.put("1", new Object[]{1, "sssss"});
         for (int i = 0; i < aeronaves.size(); i++) {
             String j = "" + (i + 2);
-            data.put(j, new Object[]{aeronaves.get(i).getIdAeronave(), aeronaves.get(i).getNombre()});
+            data.put(j, new Object[]{""+aeronaves.get(i).getIdAeronave(), String.copyValueOf(aeronaves.get(i).getNombre())});
         }
         Set<String> keyset = data.keySet();
         int rownum = 0;
