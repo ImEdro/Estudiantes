@@ -47,6 +47,8 @@
                         <a href="BuscarEmpleado.jsp">Buscar</a>
                         <a href="EliminarEmpleado.jsp">Eliminar</a>
                         <a href="ActualizarEmpleado.jsp">Actualizar</a>
+                        <a href="EmpDisponible.jsp">Disponibilidad</a>
+                        <a href="EditarDisponibilidad.jsp"> Editar Disponibilidad</a>
                     </div>
                 </li>
                 <li class="accion"><a href="#">Fabricantes</a>
