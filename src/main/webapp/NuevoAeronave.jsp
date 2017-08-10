@@ -15,7 +15,7 @@
             <table>
                 <tr>
                     <td>Nombre:</td> 
-                    <td><input type="text" name="nombre" size="2" placeholder="Ingrese el nombre"/> </td>
+                    <td><input type="text" name="nombre" size="20" placeholder="Ingrese el nombre"/> </td>
                 </tr>
                 <tr>
                     <td>Apellido:</td>  
@@ -24,7 +24,7 @@
                 <tr>
                     <tr>
                     <td>Telefono:</td> 
-                    <td><input type="number" name="telefono" size="2" placeholder="Ingrese el telefono"/> </td>
+                    <td><input type="number" name="telefono" size="20" placeholder="Ingrese el telefono"/> </td>
                 </tr>
                 <tr>
                     <td>Celular:</td>  
