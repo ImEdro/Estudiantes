@@ -14,12 +14,21 @@
              <h1>Nueva Aeronave</h1>
             <table>
                 <tr>
-                    <td>Id:</td> 
-                    <td><input type="number" name="id" size="2" placeholder="Ingrese el id"/> </td>
+                    <td>Nombre:</td> 
+                    <td><input type="text" name="nombre" size="2" placeholder="Ingrese el nombre"/> </td>
                 </tr>
                 <tr>
-                    <td>Nombre:</td>  
-                    <td><input type="text" name="nombre" size="20" placeholder="Ingrese el nombre"/></td>
+                    <td>Apellido:</td>  
+                    <td><input type="text" name="apellido" size="20" placeholder="Ingrese el apellido"/></td>
+                </tr>
+                <tr>
+                    <tr>
+                    <td>Telefono:</td> 
+                    <td><input type="number" name="telefono" size="2" placeholder="Ingrese el telefono"/> </td>
+                </tr>
+                <tr>
+                    <td>Celular:</td>  
+                    <td><input type="number" name="celular" size="20" placeholder="Ingrese el celular"/></td>
                 </tr>
                 <tr>
                     <td><input type="submit" id="submit" name="Crear" value="Crear"></td>
