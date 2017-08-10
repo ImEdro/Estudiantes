@@ -69,13 +69,14 @@ public class Aeronaves {
         boolean r = false;
         try {
             // the mysql insert statement
-            query = " insert into Aeronave (idAeronave,nombre)"
-                    + " values (?, ?)";
+            query = " insert into Aeronave (nombre,apellido,telefono,celular)"
+                    + " values (?, ?, ?, ?)";
             // create the mysql insert preparedstatement
             preparedStmt = connection.prepareStatement(query);
-
-            preparedStmt.setInt(1, a.getIdAeronave());
-            preparedStmt.setString(2, String.copyValueOf(a.getNombre()).trim());
+            preparedStmt.setString(1, String.copyValueOf(a.getNombre()).trim());
+            preparedStmt.setString(2, String.copyValueOf(a.getApellido()).trim());
+            preparedStmt.setInt(3, a.getTelefono());
+            preparedStmt.setInt(4, a.getCelular());
             // execute the preparedstatement
             preparedStmt.execute();
             System.out.println("You made it, the insertion is ok!");
