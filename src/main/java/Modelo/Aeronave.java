@@ -16,6 +16,11 @@ public class Aeronave {
     private int telefono;
     private int celular;
 
+    public Aeronave(int telefono, char[] nombre) {
+        this.telefono = telefono;
+        this.nombre = nombre;
+    }
+
     public int getIdAeronave() {
         return telefono;
     }
