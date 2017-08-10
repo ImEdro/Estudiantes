@@ -10,20 +10,49 @@ package Modelo;
  * @author 
  */
 public class Aeronave {
-    private int idAeronave;
+    
     private char[] nombre;
-
-    public Aeronave(int idAeronave, char[] nombre) {
-        this.idAeronave = idAeronave;
-        this.nombre = nombre;
-    }
+    private char[] apellido;
+    private int telefono;
+    private int celular;
 
     public int getIdAeronave() {
-        return idAeronave;
+        return telefono;
     }
 
-    public void setIdAeronave(int idAeronave) {
-        this.idAeronave = idAeronave;
+    public void setIdAeronave(int telefono) {
+        this.telefono = telefono;
+    }
+
+    public Aeronave(char[] nombre, char[] apellido, int telefono, int celular) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.telefono = telefono;
+        this.celular = celular;
+    }
+
+    public char[] getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(char[] apellido) {
+        this.apellido = apellido;
+    }
+
+    public int getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(int telefono) {
+        this.telefono = telefono;
+    }
+
+    public int getCelular() {
+        return celular;
+    }
+
+    public void setCelular(int celular) {
+        this.celular = celular;
     }
 
     public char[] getNombre() {

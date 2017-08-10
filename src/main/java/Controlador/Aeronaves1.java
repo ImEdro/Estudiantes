@@ -59,7 +59,10 @@ public class Aeronaves1 extends HttpServlet {
         } else if (tipo == 3) {
             if (request.getParameter("nombre").length() != 0) {
                 char[] nombre = request.getParameter("nombre").trim().toCharArray();
-                Aeronave p = new Aeronave(id, nombre);
+                char[] apellido = request.getParameter("nombre").trim().toCharArray();
+                int telefono = Integer.parseInt(request.getParameter("telefono"));
+                int celular = Integer.parseInt(request.getParameter("celular"));
+                Aeronave p = new Aeronave(nombre,apellido,telefono,celular);
                 boolean n = this.c.agregar(p);
                 if (n) {
                     request.setAttribute("Mensaje", "Se agrego correctamente ");
@@ -74,7 +77,10 @@ public class Aeronaves1 extends HttpServlet {
         } else {
             if (request.getParameter("nombre").length() != 0) {
                 char[] nombre = request.getParameter("nombre").trim().toCharArray();
-                Aeronave p = new Aeronave(id, nombre);
+                char[] apellido = request.getParameter("nombre").trim().toCharArray();
+                int telefono = Integer.parseInt(request.getParameter("telefono"));
+                int celular = Integer.parseInt(request.getParameter("celular"));
+                Aeronave p = new Aeronave(nombre,apellido,telefono,celular);
                 boolean n = this.c.actualizar(p);
                 if (n) {
                     request.setAttribute("Mensaje", "Se modifico correctamente ");

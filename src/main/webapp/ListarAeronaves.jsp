@@ -31,12 +31,18 @@
                         ResultSet rs = st.executeQuery(query);
                         // iterate through the java resultset
                         while (rs.next()) {
-                            int id = rs.getInt("idAeronave");
+                            
                             String nom = rs.getString("nombre");
+                            String ape = rs.getString("apellido");
+                            int tel = rs.getInt("telefono");
+                            int cel = rs.getInt("celular");
+                            
                             // print the results
                             out.println("<tr>");
-                            out.println("<td> " + id + "</td>");
                             out.println("<td> " + nom + "</td>");
+                            out.println("<td> " + ape + "</td>");
+                            out.println("<td> " + tel + "</td>");
+                            out.println("<td> " + cel + "</td>");
                             out.println("</tr>");
                         }
                         st.close();
